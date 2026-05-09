@@ -118,6 +118,7 @@
       <div><span class="pulse"></span> Live Streams Enabled</div>
     </section>
 
+    <section class="header" aria-label="Market header">
         linear-gradient(var(--grid) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid) 1px, transparent 1px),
         var(--bg);
@@ -263,6 +264,7 @@
       <div id="datetime"></div>
     </section>
 
+    <section class="stats-grid" aria-label="Stock summary">
     <section class="stats-grid">
       <article class="card"><small>Current Price</small><h2>Rs. 37.17</h2><small class="up">+1.18%</small></article>
       <article class="card"><small>Volume</small><h2>12.8M</h2><small>Avg: 9.2M</small></article>
@@ -341,6 +343,9 @@
   <script>
     const symbols = [["KSE100","121,503.20","+0.83%",true],["KMI30","198,110.08","+0.51%",true],["DJIA","39,220.35","-0.19%",false],["NASDAQ","17,016.98","+0.42%",true],["FTSE","8,314.12","-0.11%",false]];
     document.getElementById("ticker").innerHTML = symbols.map(([n,v,c,p]) => `<span>${n}: ${v} <strong class="${p?"up":"down"}">${c}</strong></span>`).join("");
+    const updateDateTime = () => { document.getElementById("datetime").textContent = new Date().toLocaleString(); };
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
     setInterval(() => { document.getElementById("datetime").textContent = new Date().toLocaleString(); }, 1000);
     const tabs = document.querySelectorAll(".tab"); const panels = document.querySelectorAll(".panel");
     tabs.forEach(tab => tab.addEventListener("click", () => { tabs.forEach(t => t.classList.remove("active")); panels.forEach(p => p.classList.remove("active")); tab.classList.add("active"); document.getElementById(tab.dataset.target).classList.add("active"); }));
